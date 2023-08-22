@@ -1,0 +1,52 @@
+{
+    "cars": [
+        {
+            "id": 1,
+            "name": "BMV x1",
+            "prise": 31000,
+            "image": "http://localhost:4200/x1.jpg"
+        },
+        {
+            "id": 2,
+            "name": "BMV x2",
+            "prise": 32000,
+            "image": "http://localhost:4200/x2.jpg"
+        },
+        {
+            "id": 3,
+            "name": "BMV x33",
+            "prise": 33000,
+            "image": "http://localhost:4200/x3.jpg"
+        },
+        {
+            "id": 4,
+            "name": "BMV x4",
+            "prise": 34000,
+            "image": "http://localhost:4200/x4.jpg"
+        },
+        {
+            "id": 5,
+            "name": "BMV x5",
+            "prise": 35000,
+            "image": "http://localhost:4200/x5.jpg"
+        },
+        {
+            "id": 6,
+            "name": "BMV x6",
+            "prise": 36000,
+            "image": "http://localhost:3000/x6.jpg"
+        },
+        {
+            "id": 7,
+            "name": "BMV x7",
+            "prise": 37000,
+            "image": "http://localhost:4200/x7.jpg"
+        },
+        {
+            "id": 8,
+            "name": "BMV x8",
+            "prise": 38000,
+            "image": "http://localhost:4200/x8.jpg"
+        }
+    ]
+}
