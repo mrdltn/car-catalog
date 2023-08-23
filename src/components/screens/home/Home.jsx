@@ -3,35 +3,16 @@ import { useQuery } from '@tanstack/react-query'
 import CarItem from './car-item/CarItem'
 import CreateCarForm from './create-car-form/CreateCarForm'
 import { CarService } from '../../../services/car.service'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { AuthContext } from './../../../providers/AuthProvider';
 
 
 function Home() {
-  // const {data, isLoading} = useQuery(['cars'], () => CarService.getAllCars())
-
-  // const {user, setUser} = useContext(AuthContext)
-
-  // if(isLoading) return <p>Loading...</p>
-
-  const [cars, setCars] = useState([])
-
-  // const clearCars = useCallback(() => () => { //cash function
-  //   setCars([])
-  // }, [cars])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await CarService.getAllCars()
-
-      setCars(data)
-    }
-    fetchData()
-
-    // return clearCars()
-  }, [])
+  const {data, isLoading} = useQuery(['cars'], () => CarService.getAllCars())
 
   const {user, setUser} = useContext(AuthContext)
+
+  if(isLoading) return <p>Loading...</p>
 
 
   return (
@@ -51,10 +32,10 @@ function Home() {
             </button>
             }
 
-        <CreateCarForm setCars={setCars}/>
+        <CreateCarForm />
         <div>
-            {cars.length ?
-                cars.map(car => (
+            {data.length ?
+                data.map(car => (
                 <CarItem key={car.id} car={car}/>
             ))
             : <p>There are no cars</p>

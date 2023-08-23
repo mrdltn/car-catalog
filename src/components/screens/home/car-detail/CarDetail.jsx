@@ -1,8 +1,7 @@
 import { Link, useParams } from "react-router-dom"
 import { CarService } from "../../../../services/car.service"
-import { useState, useEffect, useContext } from "react"
+import { useState, useEffect } from "react"
 import CarItem from './../car-item/CarItem';
-import { AuthContext } from "../../../../providers/AuthProvider";
 import { withAuth } from './../../../../HOC/withAuth';
 
 
@@ -15,7 +14,6 @@ const CarDetail = () => {
 
         const fetchData = async() => {
           const data = await CarService.getCarById(id)
-          //console.log(data);
           setCar(data)
         }
         fetchData()
