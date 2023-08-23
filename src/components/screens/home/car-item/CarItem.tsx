@@ -2,8 +2,9 @@ import { useState } from 'react';
 import styles from '../Home.module.css'
 import { Link } from 'react-router-dom';
 import Price from './Price';
+import { ICar } from '../../../../types/car.interface';
 
-function CarItem({car}) {
+function CarItem({car}: {car: ICar}) {
 
 
     return (

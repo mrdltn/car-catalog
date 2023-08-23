@@ -1,12 +1,12 @@
-import React from "react"
+import React, { FC } from "react"
 
-const Price = ({price}) => {
+const Price: FC<{price: string}> = ({price}) => {
     return (
         <p>
             {new Intl.NumberFormat('ru-Ru', {
             style: 'currency',
             currency: 'USD',                            
-            }).format(price)}
+            }).format(+price)}
         </p>
     )
 }
