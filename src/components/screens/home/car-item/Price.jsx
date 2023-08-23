@@ -1,3 +1,5 @@
+import React from "react"
+
 const Price = ({price}) => {
     return (
         <p>
@@ -9,4 +11,4 @@ const Price = ({price}) => {
     )
 }
 
-export default Price
+export default React.memo(Price)

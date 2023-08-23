@@ -1,47 +1,57 @@
-import { useEffect, useState } from 'react'
+
+import { useQuery } from '@tanstack/react-query'
 import CarItem from './car-item/CarItem'
-import {cars as carsData} from './cars.data.js'
 import CreateCarForm from './create-car-form/CreateCarForm'
-import axios from 'axios'
 import { CarService } from '../../../services/car.service'
-import { useNavigate } from 'react-router-dom'
+import { useCallback, useContext, useEffect, useState } from 'react'
+import { AuthContext } from './../../../providers/AuthProvider';
 
 
 function Home() {
+  // const {data, isLoading} = useQuery(['cars'], () => CarService.getAllCars())
+
+  // const {user, setUser} = useContext(AuthContext)
+
+  // if(isLoading) return <p>Loading...</p>
+
   const [cars, setCars] = useState([])
-  // useEffect(() => {
-  //   const fetchData = async() => {
-  //     const response = await fetch('http://localhost:4200/cars');
-  //     const data = await response.json();
-  //     setCars(data)
-  //   }
-  //   fetchData()
-  // }, [])
-//////////////выше запрос на сервер посредством fetch, а ниже axios
-  // useEffect(() => {
-  //   const fetchData = async() => {
-  //     const response = await axios.get('http://localhost:4200/cars');
-  //     setCars(response.data)
-  //   }
-  //   fetchData()
-  // }, [])
-  ////////////////
-    useEffect(() => {
-    const fetchData = async() => {
+
+  // const clearCars = useCallback(() => () => { //cash function
+  //   setCars([])
+  // }, [cars])
+
+  useEffect(() => {
+    const fetchData = async () => {
       const data = await CarService.getAllCars()
+
       setCars(data)
     }
     fetchData()
+
+    // return clearCars()
   }, [])
 
-  // const nav = useNavigate() /// когда нужно повешать переход на кнопку используется useNavigate и на button вешается
-  
+  const {user, setUser} = useContext(AuthContext)
+
 
   return (
       <div>
         <h1>Cars catalog</h1>
-        {/* <button onClick={() => nav('/car/3')}>Go</button> */}
-        <CreateCarForm setCars={setCars} />
+        {user ? (
+          <>
+            <h2>
+              Welcome, {user.name}!
+            </h2>
+            <button onClick={() => setUser(null)}>Logout</button>
+          </>
+        ) : 
+            <button onClick={() => setUser({
+              name: 'Miroslav'
+            })}>Login
+            </button>
+            }
+
+        <CreateCarForm setCars={setCars}/>
         <div>
             {cars.length ?
                 cars.map(car => (
